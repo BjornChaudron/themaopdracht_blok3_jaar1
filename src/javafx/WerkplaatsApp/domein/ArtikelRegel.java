@@ -2,20 +2,20 @@ package javafx.WerkplaatsApp.domein;
 
 
 public class ArtikelRegel  {
-	private Artikel hetArtikel;
+	private IArtikel artikel;
 	private int aantal;
 	
-	public ArtikelRegel(Artikel a,int aant)
+	public ArtikelRegel(IArtikel artikel, int aantal)
 	{
-		hetArtikel=a;
-		aantal=aant;
+		this.artikel = artikel;
+		this.aantal = aantal;
 	}
 	
-	public void setHetArtikel(Artikel hetArtikel) {
-		this.hetArtikel = hetArtikel;
+	public void setArtikel(IArtikel artikel) {
+		this.artikel = artikel;
 	}
 
-	public Artikel getHetArtikel(){
-		return hetArtikel;
+	public IArtikel getArtikel(){
+		return artikel;
 	}
 }

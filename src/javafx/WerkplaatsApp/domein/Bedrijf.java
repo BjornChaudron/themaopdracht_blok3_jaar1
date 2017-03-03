@@ -17,7 +17,7 @@ public final class Bedrijf {
     private ArrayList<Monteur> monteurs;
     private ArrayList<Factuur> facturen;
     private ArrayList<Betaling> betalingen;
-    private ArrayList<Artikel> artikelen;
+    private ArrayList<IArtikel> artikelen;
     private ArrayList<Auto> autos;
     private ArrayList<Bestelling> bestellingen;
 
@@ -33,6 +33,8 @@ public final class Bedrijf {
         this.facturen = new ArrayList<>();
         /*
         MOVED to method
+        Extract Method
+        O2b
          */
         makeTestData();
     }
@@ -47,7 +49,7 @@ public final class Bedrijf {
     /*
     boolean and naming changed
      */
-    public Werkorder zoekWerkorder(int werkorderNummer) {			//werkorder zoeken op getNextWerkOrderNummer
+    public Werkorder zoekWerkorder(int werkorderNummer) {            //werkorder zoeken op getNextWerkOrderNummer
         for (Werkorder werkorder : this.werkorders) {
             if (werkorder.getWerkorderNummer() == werkorderNummer) {
                 return werkorder;
@@ -59,7 +61,7 @@ public final class Bedrijf {
     /*
     changed checksize and return 
      */
-    public int getNextWerkOrderNummer() {				//werkordernummer genereren
+    public int getNextWerkOrderNummer() {                //werkordernummer genereren
         if (this.werkorders.isEmpty() || this.werkorders == null) {
             return 1;
         }
@@ -69,7 +71,7 @@ public final class Bedrijf {
     /*
     changed checksize and return 
      */
-    public int getNextKlantNummer() {			//klantnummer genereren
+    public int getNextKlantNummer() {            //klantnummer genereren
         if (this.klanten.isEmpty() || this.klanten == null) {
             return 1;
         }
@@ -86,7 +88,7 @@ public final class Bedrijf {
         return false;
     }
 
-    public ArrayList geefMonteurs() {		//geef alle monteurs
+    public ArrayList geefMonteurs() {        //geef alle monteurs
         return this.monteurs;
     }
 
@@ -105,7 +107,7 @@ public final class Bedrijf {
     /*
     boolean and naming changed
      */
-    public Klant zoekKlantOpNummer(int klantNummer) { 	//zoek klant op klantnnummer
+    public Klant zoekKlantOpNummer(int klantNummer) {    //zoek klant op klantnnummer
         for (Klant klant : klanten) {
             if (klant.getKlantnummer() == klantNummer) {
                 return klant;
@@ -117,7 +119,7 @@ public final class Bedrijf {
     /*
     boolean and naming changed
      */
-    public Klant zoekKlant(Klant klant) {		//zoek klant op naw gegevens
+    public Klant zoekKlant(Klant klant) {        //zoek klant op naw gegevens
         if (klanten.contains(klant)) {
             return klant;
         }
@@ -127,7 +129,7 @@ public final class Bedrijf {
     /*
     boolean and naming changed
      */
-    public boolean voegKlantToe(Klant klant) {		//voeg klant toe
+    public boolean voegKlantToe(Klant klant) {        //voeg klant toe
         if (!klanten.contains(klant)) {
             return klanten.add(klant);
         }
@@ -137,8 +139,8 @@ public final class Bedrijf {
     /*
     boolean and naming changed
      */
-    public Artikel zoekArtikelOpNummer(int artikelNummer) {			//zoek artikel op nummer
-        for (Artikel artikel : artikelen) {
+    public IArtikel zoekArtikelOpNummer(int artikelNummer) {            //zoek artikel op nummer
+        for (IArtikel artikel : artikelen) {
             if (artikel.getArtNummer() == artikelNummer) {
                 return artikel;
             }
@@ -149,7 +151,7 @@ public final class Bedrijf {
     /*
     boolean and naming changed
      */
-    public boolean voegArtikelToe(Artikel artikel) {			//voeg artikel toe
+    public boolean voegArtikelToe(IArtikel artikel) {            //voeg artikel toe
         if (!artikelen.contains(artikel)) {
             return artikelen.add(artikel);
         }
@@ -159,14 +161,14 @@ public final class Bedrijf {
     /*
     boolean and naming changed
      */
-    public boolean verwijderArtikel(Artikel artikel) {			//verwijder artikel
+    public boolean verwijderArtikel(Artikel artikel) {            //verwijder artikel
         if (artikel != null) {
             return artikelen.remove(zoekArtikelOpNummer(artikel.getArtNummer()));
         }
         return false;
     }
 
-    public boolean voegMonteurToe(Monteur nieuweMonteur) {		//monteur aanmaken
+    public boolean voegMonteurToe(Monteur nieuweMonteur) {        //monteur aanmaken
         boolean monteurIsAanwezig = true;
         if (nieuweMonteur != null) {
             for (Monteur monteur : monteurs) {
@@ -184,7 +186,7 @@ public final class Bedrijf {
     /*
     boolean and naming changed
      */
-    public boolean zoekMonteur(int monteurNummer) {			//zoek monteur op monteurnummer
+    public boolean zoekMonteur(int monteurNummer) {            //zoek monteur op monteurnummer
         for (Monteur monteur : monteurs) {
             if (monteur.getMonteurNummer() == monteurNummer) {
                 return true;
@@ -205,8 +207,8 @@ public final class Bedrijf {
     naming changed
      */
     public boolean maakBestelling(int artikelNummer, int aantal) //  maak bestelling zet onderdeel op bestellijst
-    {															//en voeg artikel bij aan de voorraad(alsof het geleverd is)
-        Artikel artikel = (Onderdeel) zoekArtikelOpNummer(artikelNummer);
+    {                                                            //en voeg artikel bij aan de voorraad(alsof het geleverd is)
+        Artikel artikel = ((Onderdeel) zoekArtikelOpNummer(artikelNummer)).getArtikel();
         Bestelling bestelling = new Bestelling(bestelnummer(), artikelNummer, aantal);
         this.bestellingen.add(bestelling);
         artikel.setAantal(aantal);
@@ -245,7 +247,7 @@ public final class Bedrijf {
             oos.close();
         }
 
-        if (obj instanceof Artikel) {
+        if (obj instanceof IArtikel) {
             FileOutputStream ois = new FileOutputStream("Artikel.obj");
             ObjectOutputStream oos = new ObjectOutputStream(ois);
             for (Artikel a : artikelen) {
@@ -349,7 +351,7 @@ public final class Bedrijf {
         ObjectInputStream ois = new ObjectInputStream(fis);
         while (ois.readObject() != null) {
             Object obj = ois.readObject();
-            Artikel a = (Artikel) obj;
+            IArtikel a = (IArtikel) obj;
             artikelen.add(a);
         }
         ois.close();
@@ -442,11 +444,20 @@ public final class Bedrijf {
         Monteur m1 = new Monteur("Bob de Bouwer", 30.00, 123);
         Monteur m2 = new Monteur("Felix de Fixer", 42.50, 456);
         Monteur m3 = new Monteur("Carlos de Car", 25.00, 789);
-        Klant k1 = new Klant(111, "Hans", "Worst", "Straat", "0000AA", "Utrecht", 123, "a@a.nl");
-        Auto a1 = new Auto("11-22-AA", "WOLOTGF35X2123456", "Ford", "Focus");
-        Artikel ar1 = new Onderdeel("Band", 70.00, "Bandenhok", 1, 40);
+        Klant k1 = Klant.createKlant(111, "Hans", "Worst", "Straat", "Utrecht", 123, "a@a.nl");
+
+        /*
+        * Replace Constructor with Builder
+Ob2
+        * */
+
+        Auto a1 = new AutoBuilder().setKen("11-22-AA").setChas("WOLOTGF35X2123456").setMk("Ford").setMod("Focus").createAuto();
+
+
+
+        IArtikel ar1 = new Onderdeel("Band", 70.00, "Bandenhok", 1, 40).getArtikel();
         artikelen.add(ar1);
-        Artikel ar2 = new Onderdeel("Motorolie 1L", 40.00, "F6", 2, 20);
+        IArtikel ar2 = new Onderdeel("Motorolie 1L", 40.00, "F6", 2, 20).getArtikel();
         artikelen.add(ar2);
         Bestelling b1 = new Bestelling(1, 249, 300);
         bestellingen.add(b1);

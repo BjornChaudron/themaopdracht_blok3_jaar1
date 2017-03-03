@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Auto implements Serializable {
+	public static final String PATTERN = "dd/MMM/yyyy";
+	public static final String NOG_GEEN_OPMERKINGEN_BIJ_DEZE_AUTO = "Nog geen opmerkingen bij deze auto!";
 	private String kenteken,chassisnummer,merk,model, opmerking;
 	private boolean afspraakGemaakt,onderhoudsPeriodeVoorbij;
 	private Date laatsteBezoek,volgendOnderhoud;
@@ -16,7 +18,7 @@ public class Auto implements Serializable {
 		chassisnummer = chas;
 		merk = mk;
 		model = mod;
-		opmerking = "Nog geen opmerkingen bij deze auto!";
+		opmerking = NOG_GEEN_OPMERKINGEN_BIJ_DEZE_AUTO;
 	}
 	
 	public String getOpmerking() {
@@ -84,7 +86,13 @@ public class Auto implements Serializable {
 	public String convertStringToDate(Date indate) //methode om een datum te kunnen omzetten naar een string
 	{
 	   String dateString = null;
-	   SimpleDateFormat sdfr = new SimpleDateFormat("dd/MMM/yyyy");
+	   SimpleDateFormat sdfr = new SimpleDateFormat(PATTERN);
+	   /*
+	   *- Extract constant/field/variable
+		Ob2
+	   * */
+
+
 	   try{
 		dateString = sdfr.format( indate );
 	   }catch (Exception ex ){

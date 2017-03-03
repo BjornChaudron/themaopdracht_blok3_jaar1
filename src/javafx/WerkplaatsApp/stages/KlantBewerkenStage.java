@@ -57,7 +57,7 @@ public class KlantBewerkenStage extends Stage{
 		texts.setPadding(new Insets(5,10,0,0));
 		tfv = new TextField(this.deKlant.getVoornaam());
 		tfa = new TextField(deKlant.getAchternaam());
-		tfadr = new TextField(deKlant.getAdres());
+		tfadr = new TextField(deKlant.getAdresOUD());
 		tfpc = new TextField(deKlant.getPostcode());
 		tfwp = new TextField(deKlant.getWoonplaats());
 		tftel = new TextField("" + this.deKlant.getTelefoonNummer());
@@ -116,7 +116,7 @@ public class KlantBewerkenStage extends Stage{
 					else{
 						k.setVoornaam(tfv.getText());
 						k.setAchternaam(tfa.getText());
-						k.setAdres(tfadr.getText());
+						k.setAdresOUD(tfadr.getText());
 						k.setPostcode(tfpc.getText());
 						k.setWoonplaats(tfwp.getText());
 						String s = tftel.getText();

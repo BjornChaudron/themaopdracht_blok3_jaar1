@@ -46,7 +46,7 @@ is divided into following sections:
     <target depends="-pre-init,-init-private" name="-init-user">
         <property file="${user.properties.file}"/>
         <!-- The two properties below are usually overridden -->
-        <!-- by the active platform. Just a fallback. -->
+        <!-- by the active platform. Just artikel fallback. -->
         <property name="default.javac.source" value="1.4"/>
         <property name="default.javac.target" value="1.4"/>
     </target>
@@ -1039,7 +1039,7 @@ is divided into following sections:
                 EXECUTION SECTION
                 =================
             -->
-    <target depends="init,compile,jar" description="Run a main class." name="run">
+    <target depends="init,compile,jar" description="Run artikel main class." name="run">
         <j2seproject1:java>
             <customize>
                 <arg line="${application.args}"/>
@@ -1106,7 +1106,7 @@ is divided into following sections:
     <!--
                 pre NB7.2 profiler integration
             -->
-    <target depends="profile-init,compile" description="Profile a project in the IDE." if="profiler.info.jvmargs.agent" name="-profile-pre72">
+    <target depends="profile-init,compile" description="Profile artikel project in the IDE." if="profiler.info.jvmargs.agent" name="-profile-pre72">
         <fail unless="netbeans.home">This target only works when run from inside the NetBeans IDE.</fail>
         <nbprofiledirect>
             <classpath>
@@ -1115,7 +1115,7 @@ is divided into following sections:
         </nbprofiledirect>
         <profile/>
     </target>
-    <target depends="profile-init,compile-single" description="Profile a selected class in the IDE." if="profiler.info.jvmargs.agent" name="-profile-single-pre72">
+    <target depends="profile-init,compile-single" description="Profile artikel selected class in the IDE." if="profiler.info.jvmargs.agent" name="-profile-single-pre72">
         <fail unless="profile.class">Must select one file in the IDE or set profile.class</fail>
         <fail unless="netbeans.home">This target only works when run from inside the NetBeans IDE.</fail>
         <nbprofiledirect>
@@ -1172,22 +1172,22 @@ is divided into following sections:
             </or>
         </condition>
     </target>
-    <target depends="-profile-check,-profile-pre72,jar" description="Profile a project in the IDE." if="profiler.configured" name="profile" unless="profiler.info.jvmargs.agent">
+    <target depends="-profile-check,-profile-pre72,jar" description="Profile artikel project in the IDE." if="profiler.configured" name="profile" unless="profiler.info.jvmargs.agent">
         <startprofiler/>
         <antcall target="run"/>
     </target>
-    <target depends="-profile-check,-profile-single-pre72" description="Profile a selected class in the IDE." if="profiler.configured" name="profile-single" unless="profiler.info.jvmargs.agent">
+    <target depends="-profile-check,-profile-single-pre72" description="Profile artikel selected class in the IDE." if="profiler.configured" name="profile-single" unless="profiler.info.jvmargs.agent">
         <fail unless="run.class">Must select one file in the IDE or set run.class</fail>
         <startprofiler/>
         <antcall target="run-single"/>
     </target>
-    <target depends="-profile-test-single-pre72" description="Profile a selected test in the IDE." name="profile-test-single"/>
-    <target depends="-profile-check" description="Profile a selected test in the IDE." if="profiler.configured" name="profile-test" unless="profiler.info.jvmargs">
+    <target depends="-profile-test-single-pre72" description="Profile artikel selected test in the IDE." name="profile-test-single"/>
+    <target depends="-profile-check" description="Profile artikel selected test in the IDE." if="profiler.configured" name="profile-test" unless="profiler.info.jvmargs">
         <fail unless="test.includes">Must select some files in the IDE or set test.includes</fail>
         <startprofiler/>
         <antcall target="test-single"/>
     </target>
-    <target depends="-profile-check" description="Profile a selected class in the IDE." if="profiler.configured" name="profile-test-with-main">
+    <target depends="-profile-check" description="Profile artikel selected class in the IDE." if="profiler.configured" name="profile-test-with-main">
         <fail unless="run.class">Must select one file in the IDE or set run.class</fail>
         <startprofiler/>
         <antcal target="run-test-with-main"/>

@@ -88,8 +88,8 @@ public class Werkorder implements Serializable {
     changed methodname to understandable methodname 
   changed return method and removed extra code
      */
-    public boolean voegArtikelToe(Artikel artikel, int aantal) {
-        return artikelen.add(new ArtikelRegel(artikel, aantal));
+    public boolean voegArtikelToe(IArtikel artikel, int aantal) {
+        return artikelen.add(new ArtikelRegelBuilder().setArtikel(artikel).setAantal(aantal).createArtikelRegel());
     }
 
     /*
@@ -97,7 +97,7 @@ public class Werkorder implements Serializable {
     and for loop to lambda*/
     public double getTotaalPrijsArtikelen() {
         double i = 0.0;
-        return artikelen.stream().map((artikel) -> artikel.getHetArtikel().prijs).reduce(i, (accumulator, _item) -> accumulator + _item);
+        return artikelen.stream().map((artikel) -> artikel.getArtikel().prijs).reduce(i, (accumulator, _item) -> accumulator + _item);
     }
 
     /*

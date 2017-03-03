@@ -23,7 +23,7 @@
 
     (Targets beginning with '-' are not intended to be called on their own.)
 
-    Example of inserting a HTML postprocessor after javaFX SDK deployment:
+    Example of inserting artikel HTML postprocessor after javaFX SDK deployment:
 
         <target name="-post-jfx-deploy">
             <basename property="jfx.deployment.base" file="${jfx.deployment.jar}" suffix=".jar"/>

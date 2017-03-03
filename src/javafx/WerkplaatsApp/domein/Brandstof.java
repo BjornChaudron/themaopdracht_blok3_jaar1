@@ -1,6 +1,6 @@
 package javafx.WerkplaatsApp.domein;
 
-public class Brandstof extends Artikel{
+public class Brandstof extends IArtikel {
 	private int aantalLiters;
 	private String TSICcode;
 

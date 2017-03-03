@@ -11,11 +11,11 @@ public class Monteur implements Serializable {
     private int monteurNummer;
     /*
     removed redudant type
+    ob2 static/instance intellij
         moved to constructor*/
-    private ArrayList<Werkorder> werkorders;
+    private static ArrayList<Werkorder> werkorders;
 
     /**
-     *
      * @param naam
      * @param uurloon
      * @param monteurNummer
@@ -104,7 +104,10 @@ public class Monteur implements Serializable {
 
     /*
     + @Override
-    changed return */
+    changed return
+    - Extract constant/field/variable
+Ob2
+*/
     @Override
     public String toString() {
         return naam + " " + monteurNummer;

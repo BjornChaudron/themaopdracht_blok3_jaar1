@@ -1,10 +1,6 @@
 package javafx.WerkplaatsApp.stages;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javafx.WerkplaatsApp.domein.Auto;
 import javafx.WerkplaatsApp.domein.Bedrijf;
@@ -15,14 +11,11 @@ import javafx.WerkplaatsApp.domein.Werkorder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 public class WerkorderWijzigenStage extends Stage {
 	private Bedrijf hetBedrijf;
@@ -160,7 +153,7 @@ public class WerkorderWijzigenStage extends Stage {
 				tfdo.setText(q);
 				tfnaam.setText(a.getDeKlant().getVoornaam() + " "
 						+ a.getDeKlant().getAchternaam());
-				tfadr.setText(a.getDeKlant().getAdres());
+				tfadr.setText(a.getDeKlant().getAdresOUD());
 				tfwp.setText(a.getDeKlant().getWoonplaats());
 				int i = a.getDeKlant().getTelefoonNummer();
 				String z = Integer.toString(i);

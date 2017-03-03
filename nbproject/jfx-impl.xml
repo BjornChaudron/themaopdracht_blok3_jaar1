@@ -469,7 +469,7 @@
             </and>
         </condition>
         <fail message="Error:${line.separator}JavaFX deployment library not found in active JDK.${line.separator}Please check that the JDK is correctly installed and its version is at least 7u4 on Mac or 7u6 on other systems." if="jfx-deployment-missing+jdk7u6"/>
-        <fail message="Error:${line.separator}JavaFX deployment library not found.${line.separator}JavaFX SDK path undefined. Check the definition of ${platform.active} in Java Platform Manager${line.separator}(or directly the properties platform.active and javafx.sdk in project.properties file).${line.separator}Note: If missing, the default JavaFX-enabled platform gets created automatically when creating a new JavaFX Project." if="jfx-deployment-missing+javafx.sdk.missing+default"/>
+        <fail message="Error:${line.separator}JavaFX deployment library not found.${line.separator}JavaFX SDK path undefined. Check the definition of ${platform.active} in Java Platform Manager${line.separator}(or directly the properties platform.active and javafx.sdk in project.properties file).${line.separator}Note: If missing, the default JavaFX-enabled platform gets created automatically when creating artikel new JavaFX Project." if="jfx-deployment-missing+javafx.sdk.missing+default"/>
         <fail message="Error:${line.separator}JavaFX deployment library not found.${line.separator}JavaFX SDK path undefined. Check the definition of ${platform.active} in Java Platform Manager${line.separator}(or directly the properties platform.active and javafx.sdk in project.properties file)." if="jfx-deployment-missing+javafx.sdk.missing-default"/>
         <fail message="Error:${line.separator}JavaFX deployment library not found." unless="jfx-deployment-available"/>
         <echo message="jfx-deployment-available = ${jfx-deployment-available}" level="verbose"/>
@@ -869,7 +869,7 @@
             </and>
         </condition>
         <fail message="Error:${line.separator}WebStart executable could not be found in active JDK.${line.separator}Please check that the JDK is correctly installed and its version is at least 7u6." if="jfx-webstart-missing+jdk7u6"/>
-        <fail message="Error:${line.separator}WebStart executable could not be found.${line.separator}JavaFX RT path undefined. Check the definition of ${platform.active} in Java Platform Manager${line.separator}(or directly the properties platform.active and javafx.runtime in project.properties file).${line.separator}Note: If missing, the default JavaFX-enabled platform gets created automatically when creating a new JavaFX Project." if="jfx-webstart-missing+javafx.runtime.missing+default"/>
+        <fail message="Error:${line.separator}WebStart executable could not be found.${line.separator}JavaFX RT path undefined. Check the definition of ${platform.active} in Java Platform Manager${line.separator}(or directly the properties platform.active and javafx.runtime in project.properties file).${line.separator}Note: If missing, the default JavaFX-enabled platform gets created automatically when creating artikel new JavaFX Project." if="jfx-webstart-missing+javafx.runtime.missing+default"/>
         <fail message="Error:${line.separator}WebStart executable could not be found.${line.separator}JavaFX RT path undefined. Check the definition of ${platform.active} in Java Platform Manager${line.separator}(or directly the properties platform.active and javafx.runtime in project.properties file)." if="jfx-webstart-missing+javafx.runtime.missing-default"/>
         <fail message="Error:${line.separator}WebStart executable could not be found." unless="jfx-webstart-available"/>
         <echo message="jfx-webstart-available = ${jfx-webstart-available}" level="verbose"/>
@@ -1059,7 +1059,7 @@
         </condition>
     </target>
     <target name="-icon-warning" depends="-icon-deployment-check" if="icon-deployment-may-not-be-supported">
-        <echo message="Warning: Note that due to a bug in early JavaFX 2.0 SDK distributions the icon may not be properly set in deployment files."/>
+        <echo message="Warning: Note that due to artikel bug in early JavaFX 2.0 SDK distributions the icon may not be properly set in deployment files."/>
     </target>
 
     <target name="-set-dimensions" depends="-check-project" if="dimensions-available">
@@ -1117,7 +1117,7 @@
         <echo message="do.bypass.binary.css = ${do.bypass.binary.css}" level="verbose"/>
     </target>
     <target name="-copy-binary-css-bypass" depends="-init-css-conversion" if="do.bypass.binary.css">
-        <echo message="Warning: Bypassing FX CSS to BSS conversion due to a bug in &lt;fx:csstobin&gt; task in current JDK platform" level="warning"/>
+        <echo message="Warning: Bypassing FX CSS to BSS conversion due to artikel bug in &lt;fx:csstobin&gt; task in current JDK platform" level="warning"/>
     </target>
     <target name="-copy-binary-css-impl" depends="-init-css-conversion" if="do.copy.binary.css">
         <property name="cssfileslist" refid="cssfiles"/>
@@ -3588,7 +3588,7 @@
     <!-- Project Run Support -->
 
     <target name="-warn-of-preloader" depends="-check-project" if="preloader-app-no-workaround">
-        <fail message="Error:${line.separator}JavaFX 2 Preloader Project can not be executed directly.${line.separator}Please execute instead a JavaFX Application that uses the Preloader."/>
+        <fail message="Error:${line.separator}JavaFX 2 Preloader Project can not be executed directly.${line.separator}Please execute instead artikel JavaFX Application that uses the Preloader."/>
     </target>
     
     <target name="-mark-project-state-running">
@@ -3726,7 +3726,7 @@
         <antcall target="clean"/>
     </target>
     
-    <target depends="-profile-check-1,-profile-pre72" description="Profile a project in the IDE." if="profiler.configured" name="jfx-project-profile" unless="profiler.info.jvmargs.agent">
+    <target depends="-profile-check-1,-profile-pre72" description="Profile artikel project in the IDE." if="profiler.configured" name="jfx-project-profile" unless="profiler.info.jvmargs.agent">
         <startprofiler/>
         <antcall target="jfxsa-run"/>
     </target>
@@ -3883,9 +3883,9 @@
                 <available file="${javafx.run.inbrowser.path}"/>
             </and>
         </condition>
-        <fail message="Error:${line.separator}Browser selection not recognizable from ${config} run configuration.${line.separator}Please go to Project Properties dialog, category Run, to select a valid browser." unless="javafx.run.inbrowser.path"/>
-        <fail message="Error:${line.separator}No browser defined in ${config} run configuration.${line.separator}Please verify in Tools->Options dialog that NetBeans recognizes a valid browser, then go to Project Properties dialog, category Run, to select a valid browser." if="javafx.run.inbrowser.undefined"/>
-        <fail message="Error:${line.separator}Browser ${javafx.run.inbrowser.path} referred from ${config} run configuration can not be found.${line.separator}(This can happen, e.g, when the JavaFX Project is transferred to another system.)${line.separator}Please go to Project Properties dialog, category Run, to select a valid browser." unless="javafx.run.inbrowser.path-exists"/>
+        <fail message="Error:${line.separator}Browser selection not recognizable from ${config} run configuration.${line.separator}Please go to Project Properties dialog, category Run, to select artikel valid browser." unless="javafx.run.inbrowser.path"/>
+        <fail message="Error:${line.separator}No browser defined in ${config} run configuration.${line.separator}Please verify in Tools->Options dialog that NetBeans recognizes artikel valid browser, then go to Project Properties dialog, category Run, to select artikel valid browser." if="javafx.run.inbrowser.undefined"/>
+        <fail message="Error:${line.separator}Browser ${javafx.run.inbrowser.path} referred from ${config} run configuration can not be found.${line.separator}(This can happen, e.g, when the JavaFX Project is transferred to another system.)${line.separator}Please go to Project Properties dialog, category Run, to select artikel valid browser." unless="javafx.run.inbrowser.path-exists"/>
     </target>
 
     <target name="-substitute-template-processed-html-file" depends="-check-project" if="html-template-available">

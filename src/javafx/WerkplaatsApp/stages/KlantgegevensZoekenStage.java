@@ -2,7 +2,6 @@ package javafx.WerkplaatsApp.stages;
 
 import javafx.WerkplaatsApp.domein.Bedrijf;
 import javafx.WerkplaatsApp.domein.Klant;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -72,29 +71,29 @@ public class KlantgegevensZoekenStage extends Stage {
 		vnaam.setPadding(new Insets(5, 0, 5, 10));
 		Label labv = new Label("Voornaam");
 		labv.setPrefWidth(100);
-		TextField tfv = new TextField();
-		vnaam.getChildren().addAll(labv, tfv);
+		TextField textFieldVoorNaam = new TextField();
+		vnaam.getChildren().addAll(labv, textFieldVoorNaam);
 
 		HBox anaam = new HBox();
 		anaam.setPadding(new Insets(0, 0, 5, 10));
 		Label laba = new Label("Achternaam");
 		laba.setPrefWidth(100);
-		TextField tfa = new TextField();
-		anaam.getChildren().addAll(laba, tfa);
+		TextField textFieldAchterNaam = new TextField();
+		anaam.getChildren().addAll(laba, textFieldAchterNaam);
 
 		HBox adres = new HBox();
 		adres.setPadding(new Insets(0, 0, 5, 10));
-		Label labadr = new Label("Adres");
+		Label labadr = new Label("Straat");
 		labadr.setPrefWidth(100);
-		TextField tfadr = new TextField();
-		adres.getChildren().addAll(labadr, tfadr);
+		TextField textFieldStraat = new TextField();
+		adres.getChildren().addAll(labadr, textFieldStraat);
 
 		HBox plaats = new HBox();
 		plaats.setPadding(new Insets(0, 0, 10, 10));
 		Label labwp = new Label("Woonplaats");
 		labwp.setPrefWidth(100);
-		TextField tfwp = new TextField();
-		plaats.getChildren().addAll(labwp, tfwp);
+		TextField textFieldPlaats = new TextField();
+		plaats.getChildren().addAll(labwp, textFieldPlaats);
 
 		HBox knop2 = new HBox(10);
 		Button annu2 = new Button("Annuleer");
@@ -102,14 +101,14 @@ public class KlantgegevensZoekenStage extends Stage {
 		Button zoeknaw = new Button("Zoeken");
 		zoeknaw.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				Klant k = new Klant(tfv.getText(), tfa.getText(), tfadr
-						.getText(), tfwp.getText());
+				Klant k = new Klant(textFieldVoorNaam.getText(), textFieldAchterNaam.getText(), textFieldStraat
+						.getText(), textFieldPlaats.getText());
 				Klant gezochte = hetBedrijf.zoekKlant(k);
 				if (gezochte != null) {
-					tfv.setText("");
-					tfa.setText("");
-					tfadr.setText("");
-					tfwp.setText("");
+					textFieldVoorNaam.setText("");
+					textFieldAchterNaam.setText("");
+					textFieldStraat.setText("");
+					textFieldPlaats.setText("");
 					KlantBewerkenStage kbs = new KlantBewerkenStage(stage,
 							gezochte, hetBedrijf);
 					kbs.showAndWait();

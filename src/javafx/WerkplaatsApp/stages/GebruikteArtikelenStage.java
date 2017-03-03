@@ -1,23 +1,17 @@
 package javafx.WerkplaatsApp.stages;
 
-import javafx.WerkplaatsApp.domein.Artikel;
-import javafx.WerkplaatsApp.domein.ArtikelRegel;
-import javafx.WerkplaatsApp.domein.Bedrijf;
-import javafx.WerkplaatsApp.domein.Werkorder;
+import javafx.WerkplaatsApp.domein.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -73,7 +67,7 @@ public class GebruikteArtikelenStage extends Stage {
 			public void handle(ActionEvent e){
         		String s = tfnr.getText();
         		int i = Integer.parseInt(s);
-        		Artikel a = hetBedrijf.zoekArtikelOpNummer(i);
+        		IArtikel a = hetBedrijf.zoekArtikelOpNummer(i);
         		if(a != null){
         			String z = tfant.getText();
         			int zi = Integer.parseInt(z);
@@ -81,7 +75,7 @@ public class GebruikteArtikelenStage extends Stage {
         				int r = a.getAantal();
         				r = r - zi;
         				a.setAantal(r);
-        				ArtikelRegel ar = new ArtikelRegel(a, zi);
+        				ArtikelRegel ar = new ArtikelRegelBuilder().setArtikel(a).setAantal(zi).createArtikelRegel();
             			w.voegArtikelRegelToe(ar);
             			Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("Goed");
