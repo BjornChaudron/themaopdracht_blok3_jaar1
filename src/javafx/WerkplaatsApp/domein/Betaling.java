@@ -31,6 +31,7 @@ public class Betaling implements Serializable {
 	}
 
 	public String toString() {
-		return "Betaling met nummer:"+nummer+" is"+alBetaald!=null||alBetaald!=true?" niet betaald":" wel betaald"+dagenVoorbij==null||dagenVoorbij!=0?"wel":"niet";
+		String betaald = alBetaald ? "wel" : "niet";
+		return String.format("Betaling met nummer: %d is %s betaald", nummer, betaald);
 	}
 }
